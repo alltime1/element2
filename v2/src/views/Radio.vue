@@ -12,7 +12,8 @@
           ></e-radio>
         </div>
         <div slot="code">
-          {{ code }}
+      121wueifdwodvw\fw/b/n
+      \n
         </div>
       </Content>
     </div>
