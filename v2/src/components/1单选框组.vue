@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-radio-group :size="size"  v-model="radioModel">
+    <el-radio-group :size="size" :text-color="textColor" :fill="fill" v-model="radioModel">
       <el-radio
         v-show="name == 'el-radio'"
         v-for="(item, index) in options"
@@ -32,12 +32,20 @@ export default Vue.extend({
       type: String,
       default: "el-radio",
     },
+    textColor:{
+    type: String,
+      default: "#ffffff",
+    },
+    fill:{
+        type: String,
+     default: "#409EFF"
+    },
     options: {
       type: Array,
       default: [],
     },
     index: {
-      type: Number || String,
+      type: [Number,String],
       default: 1,
     },
   },

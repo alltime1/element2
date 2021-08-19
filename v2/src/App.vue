@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <eradios :options="eRadioOptions"></eradios>
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +12,21 @@ export default vue.extend({
   },
   data() {
     return {
+       eRadioOptions: [
+        {
+          label: 1,
+          text: "备选框",
+          disabled: true,
+        },
+        {
+          label: 2,
+          text: "备选框2",
+        },
+        {
+          label: 4,
+          text: "备选框4",
+        },
+      ],
     };
   },
   methods: {
@@ -25,5 +41,10 @@ export default vue.extend({
 }
 #app{
   padding: 18px;
+}
+.code_img{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20px;
 }
 </style>

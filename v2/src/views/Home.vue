@@ -11,7 +11,7 @@
     </div>
     <div class="nav-all">
       <nav-bar class="navbar" />
-      <router-view style="margin-left:20px"></router-view>
+      <router-view style="margin-left:20px;flex:1"></router-view>
     </div>
   </div>
 </template>
@@ -30,6 +30,9 @@ export default Vue.extend({
 .home-header {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10%;
 }
 strong {
   line-height: 40px;
@@ -41,5 +44,8 @@ strong {
 }
 .nav-all {
   display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 10%;
 }
 </style>

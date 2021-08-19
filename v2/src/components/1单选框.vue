@@ -20,7 +20,7 @@ export default Vue.extend({
       default:false
     },
     index:{
-      type: Number || String,
+      type: [Number , String],
        default:1
     }
   },

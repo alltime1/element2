@@ -34,7 +34,7 @@ export default Vue.extend({
       default: [],
     },
     checkedIndex: {
-      type: String || Number,
+      type: [String, Number],
       default: "0",
     },
   },
