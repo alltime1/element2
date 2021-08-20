@@ -21,6 +21,7 @@ import eRadio from "./components/1单选框.vue";
 import eCheckbox from "./components/2多选框.vue";
 import eCheckboxGroup from "./components/2多选框组.vue";
 import vue from "vue";
+
 export default vue.extend({
   components: {
     eRadio: eRadio,

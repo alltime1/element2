@@ -1,18 +1,26 @@
 <template>
   <div>
-    <p class="tip">{{ name }}</p>
+    <li style="list-style: none" v-for="(item, index) in codeList" :key="index">
+      <p class="tip">{{ item.name }}</p>
+      <div class="content">
+        <Content>
+          <div slot="view" ref="code">
+            <!-- <div id="code"></div> -->
+          </div>
+          <div slot="code_descride">{{ item.descride }}</div>
+          <div slot="code">
+            <img class="code_img" :src="item.img" alt="code代码" />
+          </div>
+        </Content>
+      </div>
+    </li>
+    <!-- <p class="tip">{{ name }}</p>
     <div class="content">
       <Content>
         <div slot="view">
           <div ref="code">
             <div id="code"></div>
           </div>
-          <!-- <e-radio
-            :options="eRadioOptions"
-            :index="radio"
-            @vmodel="getModel"
-            size="medium"
-          ></e-radio> -->
         </div>
         <div slot="code_descride">getModel方法将选择的label值返回</div>
         <div slot="code">
@@ -43,8 +51,8 @@
           <img class="code_img" src="../static/2.19.23.png" alt="" />
         </div>
       </Content>
-    </div>
-    <div class="attribute">
+    </div> -->
+    <!-- <div class="attribute">
       <p class="tip">Radio Attributes</p>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="date" label="参数" width="180">
@@ -60,9 +68,9 @@
         <el-table-column prop="date" label="事件名称	"> </el-table-column>
         <el-table-column prop="name" label="说明	"> </el-table-column>
       </el-table>
-    </div>
+    </div> -->
 
-    <div class="attribute">
+    <!-- <div class="attribute">
       <p class="tip">Radio Group Attributes</p>
       <el-table :data="tableData2" style="width: 100%">
         <el-table-column prop="date" label="参数" width="180">
@@ -78,7 +86,7 @@
         <el-table-column prop="date" label="事件名称	"> </el-table-column>
         <el-table-column prop="name" label="说明	"> </el-table-column>
       </el-table>
-    </div>
+    </div> -->
   </div>
 </template>
 <script lang="ts">
@@ -87,7 +95,7 @@ import eRadio from "../components/1单选框.vue";
 import eRadioG from "../components/1单选框组.vue";
 import Vue from "vue";
 export default Vue.extend({
-  props: ["code", "data"],
+  props: ["data", "codeList"],
   components: {
     Content,
     eRadio,
@@ -95,18 +103,29 @@ export default Vue.extend({
   },
   mounted() {
     let that = this;
-    console.log(that.data)
-    let codeEle = Vue.extend({
-      template: that.code,
-      data: function () {
-        return that.data;
-      },
+    that.$refs.code.forEach((element, i:number) => {
+      console.log(this.codeList[i].code);
+      element.innerHTML = "<div id='code'/>";
+      let codeEle = Vue.extend({
+        template: that.codeList[i].code,
+        data: function () {
+          return that.data[i];
+        },
+      });
+      new codeEle({ el: "#code" });
     });
-
-    new codeEle({ el: "#code" });
+    //      let codeEle = Vue.extend({
+    //       template: that.code,
+    //       data: function () {
+    //         return that.data;
+    //       },
+    //     });
+    //     new codeEle({ el: "#code" });
   },
   data() {
-    return {};
+    return {
+      radio: null,
+    };
   },
   methods: {
     getModel() {},
@@ -114,7 +133,7 @@ export default Vue.extend({
 });
 </script>
 
-<style>
+<style >
 .tip {
   font-weight: 400;
   color: #1f2f3d;

@@ -1,44 +1,77 @@
 <template>
-  <onePage :code="code" :data="data" />
+  <onePage :codeList="codeList" :data="data" />
 </template>
 <script>
 import Vue from "vue";
-import onePage from "../viewComponents/onePage.vue";
-// import eRadio from "../components/1单选框.vue";
 export default Vue.extend({
   components: {
-    onePage,
-    // eRadio
+     onePage:() => import('../viewComponents/onePage.vue')
   },
   data() {
     return {
-      data: {
-        eRadioOptions: [
-          {
-            label: 1,
-            text: "备选框",
-            disabled: true,
-          },
-          {
-            label: 2,
-            text: "备选框2",
-          },
-          {
-            label: 4,
-            text: "备选框4",
-          },
-        ],
-      },
-      code: `<eRadios
+      codeList: [
+        {
+          name: "Checkbox 多选框",
+          descride: "@vmodel事件将返回v-model的值",
+          code: `<eCheckboxs
             :options="eRadioOptions"
-            :index="radio"
-            @vmodel="getModel"
+            :checkedIndex="radio"
             size="medium"
-          >1212</eRadios>`,
+            border
+          >1212</eCheckboxs>`,
+        },
+        {
+          name: "多选框组",
+          descride: "@vmodel事件将返回v-model的值",
+          code: `
+          <div>
+           <eCheckboxGs :options="eRadioGOptions"   :checkList="label" name="el-radio" size="medium" ></eCheckboxGs>
+           </div> `,
+        },
+      ],
+      data: [
+        {
+          label: null,
+          eRadioOptions: [
+            {
+              label: 1,
+              text: "备选框",
+             
+            },
+            {
+              label: 2,
+              text: "备选框2",
+               disabled: true,
+            },
+            {
+              label: 4,
+              text: "备选框4",
+            },
+          ],
+        },
+        {
+          label: [4],
+          eRadioGOptions: [
+            {
+              label: 1,
+              text: "备选框1",
+              disabled: true,
+
+            },
+            {
+              label: 2,
+              text: "备选框2",
+            },
+            {
+              label: 4,
+              text: "备选框4",
+            },
+          ],
+        },
+      ],
     };
   },
 });
 </script>
-
 <style>
 </style>

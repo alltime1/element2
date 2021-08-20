@@ -13,6 +13,9 @@
 
 <script lang="ts">
 import Vue from "vue";
+interface Data{
+ eCheckedArr:Boolean[]
+}
 export default Vue.extend({
   props: {
     disabled:{
@@ -35,7 +38,7 @@ export default Vue.extend({
       this.eCheckedArr[Number(e)] = true
     })
   },
-  data() {
+  data():Data{
     return {
       eCheckedArr: [],
     };

@@ -14,10 +14,9 @@
 
 <script lang="ts">
 import Vue from "vue";
-export interface IcheckList{
-  label:String;
-  disabled ? : Boolean;
-  text?:String;
+ interface Data{
+  eCheckedArr:Boolean[];
+  echeckList?:any;
 }
 export default Vue.extend({
   props: {
@@ -46,7 +45,7 @@ export default Vue.extend({
       this.eCheckedArr[Number(e)] = true
     })
   },
-  data() {
+  data():Data {
     return {
       eCheckedArr: [],
       echeckList:this.checkList,

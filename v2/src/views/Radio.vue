@@ -1,209 +1,82 @@
 <template>
-  <div>
-    <p class="tip">Radio 单选框</p>
-    <div class="content">
-      <Content>
-        <div slot="view">
-          <e-radio
-            :options="eRadioOptions"
-            :index="radio"
-            @vmodel="getModel"
-            size="medium"
-          ></e-radio>
-        </div>
-        <div slot="code_descride">getModel方法将选择的label值返回</div>
-        <div slot="code">
-          <img class="code_img" src="../static/2.19.22.png" alt="code代码" />
-        </div>
-      </Content>
-    </div>
-    <div class="tip">单选框组</div>
-    <div class="content">
-      <Content>
-        <div slot="view">
-          <eRadioG
-            :options="eRadioGOptions"
-            :index="radio"
-            name="el-radio"
-            size="medium"
-          ></eRadioG>
-          <eRadioG
-            style="margin-top: 20px"
-            :options="eRadioGOptions"
-            :index="radio"
-            name="button"
-            size="mini"
-          ></eRadioG>
-        </div>
-        <div slot="code_descride">getModelG方法将选择的label值返回</div>
-        <div slot="code">
-          <img class="code_img" src="../static/2.19.23.png" alt="" />
-        </div>
-      </Content>
-    </div>
-    <div class="attribute">
-      <p class="tip">Radio Attributes</p>
-      <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="date" label="参数" width="180">
-        </el-table-column>
-        <el-table-column prop="name" label="说明" width="180">
-        </el-table-column>
-        <el-table-column prop="type" label="类型"> </el-table-column>
-        <el-table-column prop="choose" label="可选值"> </el-table-column>
-        <el-table-column prop="default" label="默认值"> </el-table-column>
-      </el-table>
-        <p class="tip">Radio Events</p>
-      <el-table :data="tableData1" style="width: 100%">
-        <el-table-column prop="date" label="事件名称	" >
-        </el-table-column>
-        <el-table-column prop="name" label="说明	">
-        </el-table-column>
-      </el-table>
-    </div>
-
-        <div class="attribute">
-      <p class="tip">Radio Group Attributes</p>
-      <el-table :data="tableData2" style="width: 100%">
-        <el-table-column prop="date" label="参数" width="180">
-        </el-table-column>
-        <el-table-column prop="name" label="说明" width="180">
-        </el-table-column>
-        <el-table-column prop="type" label="类型"> </el-table-column>
-        <el-table-column prop="choose" label="可选值"> </el-table-column>
-        <el-table-column prop="default" label="默认值"> </el-table-column>
-      </el-table>
-        <p class="tip">Radio Group Events</p>
-      <el-table :data="tableData1" style="width: 100%">
-        <el-table-column prop="date" label="事件名称	" >
-        </el-table-column>
-        <el-table-column prop="name" label="说明	">
-        </el-table-column>
-      </el-table>
-    </div>
-    
-  </div>
+  <onePage :codeList="codeList" :data="data" />
 </template>
-<script lang="ts">
-import Content from "../viewComponents/Content.vue";
-import eRadio from "../components/1单选框.vue";
-import eRadioG from "../components/1单选框组.vue";
+<script>
 import Vue from "vue";
+// import onePage from "../viewComponents/onePage.vue";
+// import eRadio from "../components/1单选框.vue";
 export default Vue.extend({
   components: {
-    Content,
-    eRadio,
-    eRadioG,
-  },
-  created() {
-    this.eRadioGOptions = this.eRadioOptions;
+    onePage:() => import('../viewComponents/onePage.vue')
+    // eRadio
   },
   data() {
     return {
-      radio: null,
-      code: ` `,
-      tableData1:[
-         {
-          date:"vmodel",
-          name: "每次v-model改变将emit 返回选择的label",
+      codeList: [
+        {
+          name: "Radio 单选框",
+          descride: "@vmodel事件将返回v-model的值",
+          img: require("../static/2.19.22.png"),
+          code: `<eRadios
+            :options="eRadioOptions"
+            :index="radio"
+            size="medium"
+          >1212</eRadios>`,
+        },
+        {
+          name: "单选框组",
+          img: require("../static/2.19.23.png"),
+          descride: "@vmodel事件将返回v-model的值",
+          code: `
+          <div>
+           <eRadioGs :options="eRadioGOptions" :index="radio" name="el-radio" size="medium" ></eRadioGs>
+           <eRadioGs :options="eRadioGOptions" :index="radio" name="button" size="mini"  ></eRadioGs>
+           </div>
+    `,
         },
       ],
-      tableData2:[
+      data: [
         {
-          date: "disabled",
-          name: "是否禁用",
-          type: "boolean",
-          choose: "-",
-          default: "false",
-        },{
-          date: "border",
-          name: "是否显示边框",
-          type: "boolean",
-          choose: "-",
-          default: "false",
-        },{
-          date: "size",
-          name: "Radio 的尺寸，仅在 border 为真时有效",
-          type: "string",
-          choose: "medium / small / mini",
-          default: "-",
-        },{
-          date: "textColor",
-          name: "按钮形式的 Radio 激活时的文本颜色",
-          type: "string",
-          choose: "-",
-          default: "#ffffff",
-        },{
-          date: "fill",
-          name: "按钮形式的 Radio 激活时的填充色和边框色",
-          type: "string",
-          choose: "-",
-          default: "#409EFF",
-        },
-        
-      ],
-      tableData: [
-        {
-          date:"label",
-          label: "disabled",
-          name: "Radio 的 value",
-          type: "string / number",
-          choose: "-",
-          default: "-",
+          radio: null,
+          eRadioOptions: [
+            {
+              label: 1,
+              text: "备选框",
+              disabled: true,
+            },
+            {
+              label: 2,
+              text: "备选框2",
+            },
+            {
+              label: 4,
+              text: "备选框4",
+            },
+          ],
         },
         {
-          date: "disabled",
-          name: "是否禁用",
-          type: "boolean",
-          choose: "-",
-          default: "false",
-        },{
-          date: "border",
-          name: "是否显示边框",
-          type: "boolean",
-          choose: "-",
-          default: "false",
-        },,{
-          date: "size",
-          name: "Radio 的尺寸，仅在 border 为真时有效",
-          type: "string",
-          choose: "medium / small / mini",
-          default: "-",
-        },
-      ],
-      eRadioOptions: [
-        {
-          label: 1,
-          text: "备选框",
-          disabled: true,
-        },
-        {
-          label: 2,
-          text: "备选框2",
-        },
-        {
-          label: 4,
-          text: "备选框4",
+          radio: null,
+          eRadioGOptions: [
+            {
+              label: 1,
+              text: "备选框1",
+              disabled: true,
+            },
+            {
+              label: 2,
+              text: "备选框2",
+            },
+            {
+              label: 4,
+              text: "备选框4",
+            },
+          ],
         },
       ],
     };
   },
-  methods:{
-    getModel(){},
-  }
 });
 </script>
 
 <style>
-.tip {
-  font-weight: 400;
-  color: #1f2f3d;
-  font-size: 28px;
-  margin-bottom: 20px;
-  margin-top: 10px;
-}
-.attribute{
-  width: 100%;
-}
 </style>
-
-

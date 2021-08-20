@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <eradios :options="eRadioOptions"></eradios>
     <router-view></router-view>
   </div>
 </template>
@@ -8,7 +7,6 @@
 import vue from "vue";
 export default vue.extend({
   created() {
-    this.checkboxOptions = this.eRadioOptions;
   },
   data() {
     return {

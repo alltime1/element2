@@ -27,7 +27,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    getModelG(e) {
+    getModelG() {
       // e 是label
     },
   },
